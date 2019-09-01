@@ -30,9 +30,13 @@ public class JSGameManager : MonoSingleton<JSGameManager> {
 
     public void LevelStart()
     {
+        StopAllCoroutines();
+        InventoryManager.Instance.Init();
+        PackageManager.Instance.Init();
         StartCoroutine(Timer(LevelInfoModel.Instance.GetTimeLimit(currentLevelID)));
         gameState = GameState.InGame;
         garbageCountLeft = GameObject.FindObjectsOfType<GarbageBase>().Length;
+
     }
 
     private IEnumerator Timer(float t)

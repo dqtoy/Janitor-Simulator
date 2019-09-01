@@ -104,9 +104,9 @@ public class UIScreenLevelSelection : UIScreen
         JSGameManager.currentLevelID = LevelInfoModel.Instance.GetIdByIndex(currentLevelIndex);
         SceneManager.LoadSceneAsync(LevelInfoModel.Instance.GetSceneNameByIndex(currentLevelIndex)).completed += delegate
         {
+            JSGameManager.Instance.LevelStart();
             UIManager.Instance.Pop(UIDepthConst.TopDepth);
             UIManager.Instance.Push<UIScreenHUD>(UIDepthConst.MiddleDepth, true, LevelInfoModel.Instance.GetTimeLimit(JSGameManager.currentLevelID));
-            JSGameManager.Instance.LevelStart();
         };
     }
 

@@ -48,6 +48,12 @@ public class UIScreenHUD : UIScreen
         UIUtilities.DoFadeUI(pickupSlider.gameObject, 0, 0f, Ease.InOutBack);
         CapacitySlider.maxValue = PackageManager.Instance.maxCapacity;
         garbageNotice.SetActive(false);
+        for (int i = 0; i < toolSlots.Length; i++)
+        {
+            Slider slider = toolSlots[i].GetComponentInChildren<Slider>();
+            slider.value = 1;
+        }
+        CapacitySlider.value = 0;
     }
     
     public override void OnClose()
@@ -78,7 +84,6 @@ public class UIScreenHUD : UIScreen
     {
         float duration = (float)data[0];
         Action callBack = (Action)data[1];
-        print(duration);
         StartCoroutine(PickProcess(duration, callBack));
     }
 

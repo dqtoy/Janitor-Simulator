@@ -67,9 +67,9 @@ public class UIScreenResult : UIScreen
         UIManager.Instance.Push<UIScreenLoading>(UIDepthConst.TopDepth, true);
         SceneManager.LoadSceneAsync(LevelInfoModel.Instance.GetSceneName(JSGameManager.currentLevelID)).completed += delegate
         {
+            JSGameManager.Instance.LevelStart();
             UIManager.Instance.Pop(UIDepthConst.TopDepth);
             UIManager.Instance.Push<UIScreenHUD>(UIDepthConst.MiddleDepth, true, 120f);
-            JSGameManager.Instance.LevelStart();
         };
     }
 }
